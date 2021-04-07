@@ -1,0 +1,23 @@
+### 
+GET http://localhost:8080/api/products HTTP/1.1
+
+### 
+POST  http://localhost:8080/api/products HTTP/1.1
+
+{
+    "test": "data"
+}
+
+### 
+PUT  http://localhost:8080/api/products/1 HTTP/1.1
+
+{
+    "test": "data"
+}
+
+### 
+DELETE  http://localhost:8080/api/products/1 HTTP/1.1
+
+{
+    "test": "data"
+}
