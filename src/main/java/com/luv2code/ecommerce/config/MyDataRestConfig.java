@@ -7,8 +7,10 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.metamodel.EntityType;
 
+import com.luv2code.ecommerce.entity.Country;
 import com.luv2code.ecommerce.entity.Product;
 import com.luv2code.ecommerce.entity.ProductCategory;
+import com.luv2code.ecommerce.entity.State;
 
 // import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,18 +35,21 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
         HttpMethod[] theUnsuportedActions = { HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE };
 
-        // disable HTTP methods for Product: PUT, POST and DELETE
-        config.getExposureConfiguration().forDomainType(Product.class)
-                .withItemExposure((metdata, httpmethods) -> httpmethods.disable(theUnsuportedActions))
-                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsuportedActions));
-
-        // disable HTTP methods for ProductCategory: PUT, POST and DELETE
-        config.getExposureConfiguration().forDomainType(ProductCategory.class)
-                .withItemExposure((metdata, httpmethods) -> httpmethods.disable(theUnsuportedActions))
-                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsuportedActions));
+        disableHttpMethods(Product.class, config, theUnsuportedActions);
+        disableHttpMethods(ProductCategory.class, config, theUnsuportedActions);
+        disableHttpMethods(Country.class, config, theUnsuportedActions);
+        disableHttpMethods(State.class, config, theUnsuportedActions);
 
         // call an internal helper method
         exposeIds(config);
+    }
+
+    private void disableHttpMethods(Class<?> theClass, RepositoryRestConfiguration config,
+            HttpMethod[] theUnsuportedActions) {
+        // disable HTTP methods for ProductCategory: PUT, POST and DELETE
+        config.getExposureConfiguration().forDomainType(theClass)
+                .withItemExposure((metdata, httpmethods) -> httpmethods.disable(theUnsuportedActions))
+                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsuportedActions));
     }
 
     private void exposeIds(RepositoryRestConfiguration config) {
@@ -55,15 +60,15 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         Set<EntityType<?>> entities = entitymanager.getMetamodel().getEntities();
 
         // - create an array of the entity types
-        List<Class> entityClasses = new ArrayList<>();
+        List<Class<?>> entityClasses = new ArrayList<>();
 
         // - get the entity types for the entities
-        for (EntityType tempEntityType : entities) {
+        for (EntityType<?> tempEntityType : entities) {
             entityClasses.add(tempEntityType.getJavaType());
         }
 
         // - expose the entity ids for the array of entity/domain types
-        Class[] domainTypes = entityClasses.toArray(new Class[0]);
+        Class<?>[] domainTypes = entityClasses.toArray(new Class[0]);
         config.exposeIdsFor(domainTypes);
 
     }
