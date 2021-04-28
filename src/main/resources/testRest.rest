@@ -30,7 +30,7 @@ content-type: application/json
    "customer":{
       "firstName":"Marcelinho",
       "lastName":"Maciel Santos",
-      "email":"afasa@test.com"
+      "email":"marselo.maciel@gmail.com"
    },
    "shippingAddress":{
       "street":"afasa",

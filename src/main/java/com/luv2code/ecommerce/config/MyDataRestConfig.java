@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.metamodel.EntityType;
 
 import com.luv2code.ecommerce.entity.Country;
+import com.luv2code.ecommerce.entity.Order;
 import com.luv2code.ecommerce.entity.Product;
 import com.luv2code.ecommerce.entity.ProductCategory;
 import com.luv2code.ecommerce.entity.State;
@@ -27,7 +28,6 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
     @Value("${allowed.origins}")
     private String[] theAllowedOrigins;
 
-
     private EntityManager entitymanager;
 
     @Autowired
@@ -45,6 +45,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         disableHttpMethods(ProductCategory.class, config, theUnsuportedActions);
         disableHttpMethods(Country.class, config, theUnsuportedActions);
         disableHttpMethods(State.class, config, theUnsuportedActions);
+        disableHttpMethods(Order.class, config, theUnsuportedActions);
 
         // call an internal helper method
         exposeIds(config);
