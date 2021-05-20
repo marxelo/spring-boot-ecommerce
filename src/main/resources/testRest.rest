@@ -47,8 +47,8 @@ content-type: application/json
       "zipCode":"19111"
    },
    "order":{
-      "totalPrice":36.98,
-      "totalQuantity":2
+      "totalPrice":116.98,
+      "totalQuantity":3
    },
    "orderItems":[
       {
@@ -59,9 +59,18 @@ content-type: application/json
       },
       {
          "imageUrl":"assets/images/products/mousepads/mousepad-luv2code-1000.png",
-         "quantity":1,
+         "quantity":3,
          "unitPrice":17.99,
          "productId":51
       }
    ]
+}
+
+
+
+### 
+POST http://curio.iib.desenv.bb.com.br/op5456848v1/4.0.0 HTTP/1.1
+content-type: application/json
+
+{
 }
