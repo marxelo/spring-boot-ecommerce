@@ -33,7 +33,7 @@ content-type: application/json
       "email":"marselo.maciel@gmail.com"
    },
    "shippingAddress":{
-      "street":"afasa",
+      "street":"Rua SD",
       "city":"afasa",
       "state":"Alberta",
       "country":"Canada",
@@ -73,4 +73,47 @@ POST http://curio.iib.desenv.bb.com.br/op5456848v1/4.0.0 HTTP/1.1
 content-type: application/json
 
 {
+}
+
+
+### 
+POST http://curio.iib.desenv.bb.com.br/op5405746v1/4.0.0 HTTP/1.1
+content-type: application/json
+
+{
+}
+
+###
+POST http://curio.iib.hm.bb.com.br/op5456848v1/4.0.0
+Content-Type: application/json
+
+{
+
+}
+
+###
+POST http://curio.iib.desenv.bb.com.br/op5794051v1/4.1.0-SNAPSHOT
+Content-Type: application/json
+
+{
+
+}
+
+###
+POST http://curio.iib.desenv.bb.com.br/op5794175v1/4.1.0-SNAPSHOT
+Content-Type: application/json
+
+{
+   "codigoTipoParcelamento": 1
+
+}
+
+
+###
+POST http://curio.iib.desenv.bb.com.br/op5785188v1/4.1.0
+Content-Type: application/json
+
+{
+   "codigoFaixaValorTransacao": -35
+
 }
